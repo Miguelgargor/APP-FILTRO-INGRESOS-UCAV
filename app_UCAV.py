@@ -86,7 +86,7 @@ def funcion_filtrar_por_fecha(UCAV_PAGO_INGRESO, Nombre_Hoja, fecha_inicio_indic
 
     ### EN CASO DE ERROR-> Comprobar los parámetros:
     except Exception as e:
-        st.warning(" **¡COMPRUEBE LOS PARÁMETROS INTRODUCIDOS!**:", str(e), icon="⚠️")
+        st.warning(" **¡COMPRUEBE LOS PARÁMETROS INTRODUCIDOS!**:", str(e), icon="⚠️", jfjfjfjf)
 #############################################################################################################################
 
 ## A) CONFIGURACIÓN GENERAL DE LA PÁGINA WEB:
