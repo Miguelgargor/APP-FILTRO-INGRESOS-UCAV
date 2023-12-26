@@ -197,7 +197,7 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     st.write('Prueba con otras fechas.')                         # Texto.
 
         except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
-            st.error(f"Error: {str(e)}")
+            st.error(f"Error Miguel aquí estás: {str(e)}")
     else:
         st.warning('¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!') # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
 ####################################################################################################################################################################
