@@ -152,9 +152,9 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                 def formatear_fecha(fecha): ## COMPLETAR LAS FECHAS CON LOS 0 NECESARIOS--> ej.: 01/09/2023.
                     partes= fecha.split('/') # Divide la fecha en sus partes.
                     # Añade ceros a la izquierda si es necesario:
-                    dia= partes[0].zfill(2)
-                    mes= partes[1].zfill(2)
-                    año= partes[2]
+                    dia= str(partes[0]).zfill(2)
+                    mes= str(partes[1]).zfill(2)
+                    año= str(partes[2])
                     # Formatea la fecha como 'dd-mm-yyyy':
                     fecha_formateada = f'{dia}-{mes}-{año}'
                     return fecha_formateada
