@@ -1,6 +1,6 @@
 pandas
 datetime
 timedelta
-streamlit
+streamlit==1.25.0
 BytesIO
 io
