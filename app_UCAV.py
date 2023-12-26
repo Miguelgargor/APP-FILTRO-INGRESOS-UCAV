@@ -166,28 +166,34 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     df_resultado.reset_index(drop=True, inplace=True)           # RESETEAR el ÍNDICE (y eliminar el anterior).
                     df_resultado.index= df_resultado.index+1                    # Empezar el ÍNDICE desde el 1.
                     st.dataframe(df_resultado)                                  # MOSTRAR el DF RESULTADO.
-                    buffer= BytesIO()                                           # ¡¡¡Para CONVERTIR el DF -> En EXCEL!!!
-                    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-                        df_resultado.to_excel(writer, sheet_name='DATOS_FILTRADOS', index=False)  
 
                     if fecha_fin_indicada != None and fecha_fin_indicada !='' and fecha_fin_indicada > fecha_inicio_indicada: # Si está bien la fecha_fin...
                         fecha_inicio_guardar = formatear_fecha(fecha_inicio_indicada)   # fecha_inicio_indicada.replace('/', '-')  # Cambio de / por - para que se pueda guardar el archivo.
                         fecha_fin_guardar = formatear_fecha(fecha_fin_indicada)         # fecha_fin_indicada.replace('/', '-').
                         if fecha_inicio_guardar==fecha_fin_guardar:                     # Si es solo un día, que se guarde sólo con la primera fecha_inicio.
-                            ### BOTÓN de DOWNLOAD!!   
+                            ### BOTÓN de DOWNLOAD!!
+                            buffer= BytesIO()                                           # ¡¡¡Para CONVERTIR el DF -> En EXCEL!!!
+                            with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+                                df_resultado.to_excel(writer, sheet_name='DATOS_FILTRADOS', index=False)   
                             st.download_button(label=':green[**Descargar Resultados**] :inbox_tray:',                                    # NOMBRE del BOTÓN. (Verde y Negrita + Emoji).
                                                 data= buffer,                                                                            # DATOS.
                                                 file_name= 'UCAV_PAGO_INGRESO_DATOS_FILTRADOS_DEL_{}.xlsx'.format(fecha_inicio_guardar)) # NOMBRE ARCHIVO que se GUARDA.
                         #..................................................................................................................................................................#
                         else:                                                           # Si es más de un día, que se guarde con el intervalo de tiempo.
-                            ### BOTÓN de DOWNLOAD!!   
+                            ### BOTÓN de DOWNLOAD!!
+                            buffer= BytesIO()                                           # ¡¡¡Para CONVERTIR el DF -> En EXCEL!!!
+                            with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+                                df_resultado.to_excel(writer, sheet_name='DATOS_FILTRADOS', index=False)
                             st.download_button(label=':green[**Descargar Resultados**] :inbox_tray:',                                    # NOMBRE del BOTÓN. (Verde y Negrita + Emoji).
                                                 data= buffer,                                                                            # DATOS.
                                                 file_name= 'UCAV_PAGO_INGRESO_DATOS_FILTRADOS_DESDE_{}_HASTA_{}.xlsx'.format(fecha_inicio_guardar, fecha_fin_guardar)) # NOMBRE ARCHIVO que se GUARDA.
                         #..................................................................................................................................................................#
                     else:
                         fecha_inicio_guardar = formatear_fecha(fecha_inicio_indicada) # fecha_inicio_indicada.replace('/', '-')  # Cambio de / por - para que se pueda guardar el archivo.
-                        ### BOTÓN de DOWNLOAD!!      
+                        ### BOTÓN de DOWNLOAD!!
+                        buffer= BytesIO()                                           # ¡¡¡Para CONVERTIR el DF -> En EXCEL!!!
+                        with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+                            df_resultado.to_excel(writer, sheet_name='DATOS_FILTRADOS', index=False)  
                         st.download_button(label=':green[**Descargar Resultados**] :inbox_tray:',                                    # NOMBRE del BOTÓN. (Verde y Negrita + Emoji).
                                             data= buffer,                                                                            # DATOS.
                                             file_name= 'UCAV_PAGO_INGRESO_DATOS_FILTRADOS_DEL_{}.xlsx'.format(fecha_inicio_guardar))  # NOMBRE ARCHIVO que se GUARDA.
@@ -197,7 +203,7 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     st.write('Prueba con otras fechas.')                         # Texto.
 
         except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
-            st.error(f"Error Miguel aquí estás: {str(e)}")
+            st.error(f"Error: {str(e)}")
     else:
         st.warning('¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!') # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
 ####################################################################################################################################################################
