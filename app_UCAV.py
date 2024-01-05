@@ -90,7 +90,7 @@ def funcion_filtrar_por_fecha(UCAV_PAGO_INGRESO, Nombre_Hoja, fecha_inicio_indic
 #############################################################################################################################
 
 ## A) CONFIGURACIÓN GENERAL DE LA PÁGINA WEB:
-st.set_page_config(page_title="App Filtrado Alumnos Ingreso",                                                             # Nombre en el Navegador.
+st.set_page_config(page_title="Filtrado Alumnos Ingreso",                                                                 # Nombre en el Navegador.
                    page_icon="https://raw.githubusercontent.com/Miguelgargor/IMAGENES_APPs/main/logoUcav_navegador.png",  # Icono del Navegador.
                    layout="wide",                                                                                         # Mostrarlo en toda la pantalla.
                    initial_sidebar_state="expanded")                                                                      # Mostrar la barra lateral inicialmente.
