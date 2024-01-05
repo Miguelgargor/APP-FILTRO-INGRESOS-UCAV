@@ -86,7 +86,7 @@ def funcion_filtrar_por_fecha(UCAV_PAGO_INGRESO, Nombre_Hoja, fecha_inicio_indic
 
     ### EN CASO DE ERROR-> Comprobar los parámetros:
     except Exception as e:
-        st.warning("¡COMPRUEBE LOS PARÁMETROS INTRODUCIDOS!:", str(e), icon="⚠️")
+        st.warning("¡COMPRUEBE LOS PARÁMETROS INTRODUCIDOS!: {}".format(str(e)), icon="⚠️")
 #############################################################################################################################
 
 ## A) CONFIGURACIÓN GENERAL DE LA PÁGINA WEB:
@@ -98,7 +98,7 @@ st.set_page_config(page_title="App Filtrado Alumnos Ingreso",                   
 
 ## B) BARRA LATERAL: (Indicar los parámetros de la Función):
 with st.sidebar:                              # Barra Lateral.
-    st.title(':red_circle: :red[FILTROS]')    # Título.
+    st.title(':red_circle: :red[FILTROS]')    # Título en rojo y con un círculo rojo a la izquierda.
     st.header('ARCHIVO:')                     # Encabezado.
     #.................................................................#
     with st.expander(':blue[**Cargar archivo excel**] :open_file_folder:'):   # BOTÓN QUE SE ABRE.
@@ -193,7 +193,7 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                                             file_name= 'UCAV_PAGO_INGRESO_DATOS_FILTRADOS_DEL_{}.xlsx'.format(fecha_inicio_guardar))  # NOMBRE ARCHIVO que se GUARDA.
                 else:
                     st.write('')                                                 # Línea en Blanco.
-                    st.write(':red[***¡NO HAY REGISTROS PARA ESTAS FECHAS!***]') # SI len(df)=0.
+                    st.write(':red[***¡NO HAY REGISTROS PARA ESTAS FECHAS!***]') # SI len(df)=0. (En rojo, negrita y cursiva).
                     st.write('Prueba con otras fechas.')                         # Texto.
 
         except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
