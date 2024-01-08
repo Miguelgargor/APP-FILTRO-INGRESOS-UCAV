@@ -136,7 +136,7 @@ with col3:
 st.write(''); st.write('') # LÍNEAS en BLANCO.
 # Escritura.
 st.write('Esta app web te permitirá filtrar los datos de los alumnos que tienen sus pagos por transferencia bancaria,', 
-         'con el fin de modificarlos el formato necesario para compatibilizarlo con el archivo Excel del Drive.')
+         'con el fin de conseguir el formato necesario para compatibilizarlo con el archivo Excel del Drive.')
 st.write('Primero elige los filtros necesarios en la barra lateral. Después, sólamente tienes que pulsar en "**FILTRAR**".')
 st.write(''); st.write('') # LÍNEAS en BLANCO.
     #--------------------------------------------------------------------------------------#
@@ -196,8 +196,8 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     st.write(':red[***¡NO HAY REGISTROS PARA ESTAS FECHAS!***]') # SI len(df)=0. (En rojo, negrita y cursiva).
                     st.write('Prueba con otras fechas.')                         # Texto.
 
-        except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
-            st.error(f"Error: {str(e)}")
+    #    except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
+    #        st.error(f"Error: {str(e)}")
     else:
         st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
 ####################################################################################################################################################################
