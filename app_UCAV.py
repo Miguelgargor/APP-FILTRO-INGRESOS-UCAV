@@ -160,7 +160,7 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     return fecha_formateada
                 #··································································#
 
-##C.3.) GUARDAR EL RESULTADO:
+    ##C.3.) GUARDAR EL RESULTADO:
                 if len(df_resultado)>= 1:                                       # Si NO es una tabla vacía... GUÁRDALA...
                     st.success(" ¡Datos filtrados correctamente!", icon="✅")  # MENSAJE de ÉXITO.
                     df_resultado.reset_index(drop=True, inplace=True)           # RESETEAR el ÍNDICE (y eliminar el anterior).
@@ -196,8 +196,8 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
                     st.write(':red[***¡NO HAY REGISTROS PARA ESTAS FECHAS!***]') # SI len(df)=0. (En rojo, negrita y cursiva).
                     st.write('Prueba con otras fechas.')                         # Texto.
 
-    #    except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
-    #        st.error(f"Error: {str(e)}")
+        except Exception as e:             # Si al intentar ejecutar la FUNCIÓN hay un ERROR...
+            st.error(f"Error: {str(e)}")
     else:
         st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
 ####################################################################################################################################################################
