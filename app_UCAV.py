@@ -99,13 +99,13 @@ st.set_page_config(page_title="Filtrado Alumnos Ingreso",                       
 ## B) BARRA LATERAL: (Indicar los parámetros de la Función):
 with st.sidebar:                              # Barra Lateral.
     st.title(':red_circle: :red[FILTROS]')    # Título en rojo y con un círculo rojo a la izquierda.
-    st.header('ARCHIVO:')                     # Encabezado.
+    st.header('ARCHIVO: :open_file_folder:')  # Encabezado + SÍMBOLO CARPETA.
     #.................................................................#
-    with st.expander(':blue[**Cargar archivo excel**] :open_file_folder:'):   # BOTÓN QUE SE ABRE.
+    with st.expander(':blue[**Cargar archivo excel**]'):   # BOTÓN QUE SE ABRE.
         UCAV_PAGO_INGRESO = st.file_uploader(label="Elegir el Excel **UCAV_PAGO_INGRESO**", type=["xlsx", "xls"]) # SUBIR UN ARCHIVO.
     st.divider()   # LÍNEA HORIZONTAL.
     #.................................................................#
-    st.header('FILTRO POR FECHAS:')
+    st.header('FILTRO POR FECHAS:' :calendar:) # TÍTULO + SÍMBOLO CALENDARIO.
     fecha_menosunmes_menosundia= (datetime.now() - timedelta(days=31)).strftime('%d/%m/%Y')
     fecha_menosunmes_menos5dias= (datetime.now() - timedelta(days=35)).strftime('%d/%m/%Y')
     fecha_inicio_indicada, fecha_fin_indicada= st.columns(2)
@@ -116,7 +116,7 @@ with st.sidebar:                              # Barra Lateral.
         fecha_fin_indicada = st.text_input(':blue[**Fecha Hasta**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia)    # ENTRADA DE TEXTO.
     st.divider()   # LÍNEA HORIZONTAL.
     #.................................................................#
-    st.header('HOJA:')
+    st.header('HOJA:' :page_with_curl:) # TÍTULO + SÍMBOLO HOJA.
     with st.expander(':blue[Hoja del Excel a filtrar]'):   # BOTÓN QUE SE ABRE.
         Nombre_Hoja = st.text_input("Dejar en blanco para usar la última hoja del Excel.") # ENTRADA DE TEXTO.
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
