@@ -98,7 +98,7 @@ st.set_page_config(page_title="Filtrado Alumnos Ingreso",                       
 
 ## B) BARRA LATERAL: (Indicar los parámetros de la Función):
 with st.sidebar:                              # Barra Lateral.
-    st.title(':red_circle: :red[FILTROS]')    # Título en rojo y con un círculo rojo a la izquierda.
+    st.title('⚙️ :red[FILTROS]')    # Título en rojo y con un círculo rojo a la izquierda.
     st.header('ARCHIVO: :open_file_folder:')  # Encabezado + SÍMBOLO CARPETA.
     #.................................................................#
     with st.expander(':blue[**Cargar archivo excel**]'):   # BOTÓN QUE SE ABRE.
