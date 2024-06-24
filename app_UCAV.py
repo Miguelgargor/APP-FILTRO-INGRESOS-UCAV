@@ -151,25 +151,12 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
             with st.spinner('Cargando...'):      ### CARGANDO... ###
                 # Llamar a la función:
                 df_resultado, ULTIMA_FECHA_DISPONIBLE = funcion_filtrar_por_fecha(UCAV_PAGO_INGRESO, Nombre_Hoja, fecha_inicio_indicada, fecha_fin_indicada)
+                #··································································#
 
-
-
-            ## FUNCIÓN PARA VER LA ÚLTIMA FECHA DISPONIBLE EN EL EXCEL:
-            #    st.header('ULTIMA FECHA DISPONIBLE:')
-
-       
-                st.subheader(f"{ULTIMA_FECHA_DISPONIBLE}")
+            ## VER LA ÚLTIMA FECHA DISPONIBLE EN EL EXCEL:
+                st.subheader(f"La última fecha disponible es: {ULTIMA_FECHA_DISPONIBLE}")
                 st.divider()   # LÍNEA HORIZONTAL.
-
-
-
-
-
-
-
-
-
-
+                #··································································#
 
                 def formatear_fecha(fecha): ## COMPLETAR LAS FECHAS CON LOS 0 NECESARIOS--> ej.: 01/09/2023.
                     partes= fecha.split('/') # Divide la fecha en sus partes.
