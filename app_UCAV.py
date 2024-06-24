@@ -124,7 +124,9 @@ def ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja):
     ### EN CASO DE ERROR-> Comprobar los parámetros:
     except Exception as e:
         st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
-
+   
+    
+    ULTIMA_FECHA_DISPONIBLE= ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja)
     st.subheader(ULTIMA_FECHA_DISPONIBLE)
 
 
