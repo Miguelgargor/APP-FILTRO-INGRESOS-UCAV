@@ -99,10 +99,28 @@ st.set_page_config(page_title="Filtrado Alumnos Ingreso",                       
 ## B) BARRA LATERAL: (Indicar los parámetros de la Función):
 with st.sidebar:                              # Barra Lateral.
     st.title('⚙️ :red[FILTROS]')    # Título en rojo y con un círculo rojo a la izquierda.
-    st.header('ULTIMA FECHA DISPONIBLE:')
+    st.header('ARCHIVO: :open_file_folder:')  # Encabezado + SÍMBOLO CARPETA.
+    #.................................................................#
+    with st.expander(':blue[**Cargar archivo excel**]'):   # BOTÓN QUE SE ABRE.
+        UCAV_PAGO_INGRESO = st.file_uploader(label="Elegir el Excel **UCAV_PAGO_INGRESO**", type=["xlsx", "xls"]) # SUBIR UN ARCHIVO.
+    st.divider()   # LÍNEA HORIZONTAL.
+    #.................................................................#
+    st.header('FILTRO POR FECHAS: :calendar:') # TÍTULO + SÍMBOLO CALENDARIO.
+    fecha_menosunmes_menosundia= (datetime.now() - timedelta(days=31)).strftime('%d/%m/%Y')
+    fecha_menosunmes_menos5dias= (datetime.now() - timedelta(days=35)).strftime('%d/%m/%Y')
+    fecha_inicio_indicada, fecha_fin_indicada= st.columns(2)
+    with fecha_inicio_indicada:
+        fecha_inicio_indicada = st.text_input(':blue[**Fecha Desde**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia) # ENTRADA DE TEXTO.
+
+    with fecha_fin_indicada:
+        fecha_fin_indicada = st.text_input(':blue[**Fecha Hasta**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia)    # ENTRADA DE TEXTO.
+    st.divider()   # LÍNEA HORIZONTAL.
+
 
 
 ## FUNCIÓN PARA VER LA ÚLTIMA FECHA DISPONIBLE EN EL EXCEL:
+    st.header('ULTIMA FECHA DISPONIBLE:')
+
 def ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja):
 
     # Prueba a aplicar la función y si da error comprueba los parámetros introducidos:
@@ -124,60 +142,16 @@ def ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja):
     ### EN CASO DE ERROR-> Comprobar los parámetros:
     except Exception as e:
         st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
-   
     
     ULTIMA_FECHA_DISPONIBLE= ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja)
     st.subheader(ULTIMA_FECHA_DISPONIBLE)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    st.header('ARCHIVO: :open_file_folder:')  # Encabezado + SÍMBOLO CARPETA.
-    #.................................................................#
-    with st.expander(':blue[**Cargar archivo excel**]'):   # BOTÓN QUE SE ABRE.
-        UCAV_PAGO_INGRESO = st.file_uploader(label="Elegir el Excel **UCAV_PAGO_INGRESO**", type=["xlsx", "xls"]) # SUBIR UN ARCHIVO.
     st.divider()   # LÍNEA HORIZONTAL.
-    #.................................................................#
-    st.header('FILTRO POR FECHAS: :calendar:') # TÍTULO + SÍMBOLO CALENDARIO.
-    fecha_menosunmes_menosundia= (datetime.now() - timedelta(days=31)).strftime('%d/%m/%Y')
-    fecha_menosunmes_menos5dias= (datetime.now() - timedelta(days=35)).strftime('%d/%m/%Y')
-    fecha_inicio_indicada, fecha_fin_indicada= st.columns(2)
-    with fecha_inicio_indicada:
-        fecha_inicio_indicada = st.text_input(':blue[**Fecha Desde**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia) # ENTRADA DE TEXTO.
 
-    with fecha_fin_indicada:
-        fecha_fin_indicada = st.text_input(':blue[**Fecha Hasta**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia)    # ENTRADA DE TEXTO.
-    st.divider()   # LÍNEA HORIZONTAL.
+
+
+
+
+
     #.................................................................#
     st.header('HOJA: :page_with_curl:') # TÍTULO + SÍMBOLO HOJA.
     with st.expander(':blue[Hoja del Excel a filtrar]'):   # BOTÓN QUE SE ABRE.
