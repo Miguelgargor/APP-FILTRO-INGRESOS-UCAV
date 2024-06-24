@@ -116,42 +116,6 @@ with st.sidebar:                              # Barra Lateral.
         fecha_fin_indicada = st.text_input(':blue[**Fecha Hasta**] (Ejemplo: {})'.format(fecha_menosunmes_menos5dias), fecha_menosunmes_menosundia)    # ENTRADA DE TEXTO.
     st.divider()   # LÍNEA HORIZONTAL.
 
-
-
-## FUNCIÓN PARA VER LA ÚLTIMA FECHA DISPONIBLE EN EL EXCEL:
-    st.header('ULTIMA FECHA DISPONIBLE:')
-
-def ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja):
-
-    # Prueba a aplicar la función y si da error comprueba los parámetros introducidos:
-    try:
-        ## 1º) LECTURA DE DATOS (EXCEL "UCAV_PAGO_INGRESO"):
-        #### Si no se le pasa NINGÚN NOMBRE de la HOJA con la que se quiere trabajar-> Coge la ÚLTIMA HOJA por defecto:
-        if Nombre_Hoja is None or Nombre_Hoja=='':
-            Nombre_Hoja=pd.ExcelFile(UCAV_PAGO_INGRESO).sheet_names[-1] ## NOMBRE de la ÚLTIMA HOJA del EXCEL ##
-
-        datos= pd.read_excel(UCAV_PAGO_INGRESO, header= 1, sheet_name=Nombre_Hoja)  ## IMPORTANTE: .xlsx  !!!!
-        #---------------------------------------------------------------------------------------------------------------#
-
-        ## 2º) QUEDARSE SÓLO CON LAS COLUMNAS NECESARIAS DEL EXCEL "UCAV_PAGO_INGRESO":
-        datos_ordenados= datos[['ID Facturación', 'ID', 'Fecha Vto', 'Nombre','Última', '2º Apellido']].copy()
-
-        ULTIMA_FECHA_DISPONIBLE= datos_ordenados['Fecha Vto'].iloc[-1].strftime('%d/%m/%Y') # COGER LA ÚLTIMA FECHA DISPONIBLE (PARA SABER CUANDO VOLVER A CAMBIAR EL EXCEL).
-        return ULTIMA_FECHA_DISPONIBLE
-    
-    ### EN CASO DE ERROR-> Comprobar los parámetros:
-    except Exception as e:
-        st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
-    
-    ULTIMA_FECHA_DISPONIBLE= ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja)
-    st.subheader(ULTIMA_FECHA_DISPONIBLE)
-    st.divider()   # LÍNEA HORIZONTAL.
-
-
-
-
-
-
     #.................................................................#
     st.header('HOJA: :page_with_curl:') # TÍTULO + SÍMBOLO HOJA.
     with st.expander(':blue[Hoja del Excel a filtrar]'):   # BOTÓN QUE SE ABRE.
@@ -185,6 +149,47 @@ if st.button(":blue[**FILTRAR**]"):    # De color AZUL (:blue[]) y en NEGRITA(**
             with st.spinner('Cargando...'):      ### CARGANDO... ###
                 # Llamar a la función:
                 df_resultado = funcion_filtrar_por_fecha(UCAV_PAGO_INGRESO, Nombre_Hoja, fecha_inicio_indicada, fecha_fin_indicada)
+
+
+
+            ## FUNCIÓN PARA VER LA ÚLTIMA FECHA DISPONIBLE EN EL EXCEL:
+                st.header('ULTIMA FECHA DISPONIBLE:')
+
+            def ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja):
+
+                # Prueba a aplicar la función y si da error comprueba los parámetros introducidos:
+                try:
+                    ## 1º) LECTURA DE DATOS (EXCEL "UCAV_PAGO_INGRESO"):
+                    #### Si no se le pasa NINGÚN NOMBRE de la HOJA con la que se quiere trabajar-> Coge la ÚLTIMA HOJA por defecto:
+                    if Nombre_Hoja is None or Nombre_Hoja=='':
+                        Nombre_Hoja=pd.ExcelFile(UCAV_PAGO_INGRESO).sheet_names[-1] ## NOMBRE de la ÚLTIMA HOJA del EXCEL ##
+
+                    datos= pd.read_excel(UCAV_PAGO_INGRESO, header= 1, sheet_name=Nombre_Hoja)  ## IMPORTANTE: .xlsx  !!!!
+                    #---------------------------------------------------------------------------------------------------------------#
+
+                    ## 2º) QUEDARSE SÓLO CON LAS COLUMNAS NECESARIAS DEL EXCEL "UCAV_PAGO_INGRESO":
+                    datos_ordenados= datos[['ID Facturación', 'ID', 'Fecha Vto', 'Nombre','Última', '2º Apellido']].copy()
+
+                    ULTIMA_FECHA_DISPONIBLE= datos_ordenados['Fecha Vto'].iloc[-1].strftime('%d/%m/%Y') # COGER LA ÚLTIMA FECHA DISPONIBLE (PARA SABER CUANDO VOLVER A CAMBIAR EL EXCEL).
+                    return ULTIMA_FECHA_DISPONIBLE
+                
+                ### EN CASO DE ERROR-> Comprobar los parámetros:
+                except Exception as e:
+                    st.warning(' ¡Cargue un archivo de datos "UCAV_PAGO_INGRESO_DATOS" válido!', icon="⚠️") # Muestra como WARNING si NO has insertado el ARCHIVO CORRECTO de DATOS.
+                
+                ULTIMA_FECHA_DISPONIBLE= ultima_fecha_disponible(UCAV_PAGO_INGRESO, Nombre_Hoja)
+                st.subheader(ULTIMA_FECHA_DISPONIBLE)
+                st.divider()   # LÍNEA HORIZONTAL.
+
+
+
+
+
+
+
+
+
+
 
                 def formatear_fecha(fecha): ## COMPLETAR LAS FECHAS CON LOS 0 NECESARIOS--> ej.: 01/09/2023.
                     partes= fecha.split('/') # Divide la fecha en sus partes.
